@@ -85,10 +85,13 @@ eclipse.each_with_index do |data, i|
   x = x * -1 if x < 0
 
   # Circumference at this latitude
-  latitude_circumference = EARTH_RADIUS * Math.cos(lat1_rad)
+  latitude_circumference = EARTH_CIRCUMFERENCE * Math.cos(lat1_rad)
+
+  # Radius at this latitude
+  latitude_radius = latitude_circumference / (2 * Math::PI)
 
   # Convert surface speed to speed over Earth diameter (real speed)
-  q = m * (Math.sqrt(1 - ((x / latitude_circumference)**2)))
+  q = m * (Math.sqrt(1 - ((x / latitude_radius)**2)))
   speeds[:moon_real] << q
 
   tmp << [
